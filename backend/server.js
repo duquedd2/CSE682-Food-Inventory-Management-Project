@@ -6,8 +6,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? ['https://foodinventory.aipoweredtrainings.com']
+  : ['http://localhost:5173'];
+
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(express.json());
